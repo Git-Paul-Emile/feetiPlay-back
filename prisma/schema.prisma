@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Enums ────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  viewer
+  premium
+  streamer
+  admin
+  super_admin
+}
+
+enum SubscriptionPlan {
+  free
+  basic
+  premium
+  vip
+}
+
+enum AdminRole {
+  super_admin
+  admin
+  moderator
+  finance
+  marketing
+}
+
+enum TicketStatus {
+  valid
+  used
+  expired
+}
+
+// ── Modèles ──────────────────────────────────────────────────────────────────
+
+model User {
+  id               String           @id @default(cuid())
+  name             String
+  email            String           @unique
+  passwordHash     String
+  phone            String?
+  avatar           String?
+  role             UserRole         @default(viewer)
+  subscriptionPlan SubscriptionPlan @default(free)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  tickets      Ticket[]
+  watchHistory WatchHistory[]
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  passwordHash String
+  avatar       String?
+  role         AdminRole
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Channel {
+  id              String   @id @default(cuid())
+  name            String
+  slug            String   @unique
+  description     String
+  logo            String?
+  coverImage      String?
+  category        String
+  isActive        Boolean  @default(true)
+  subscriberCount Int      @default(0)
+  eventCount      Int      @default(0)
+  country         String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  events StreamingEvent[]
+}
+
+model StreamingEvent {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  date        String
+  time        String
+  duration    String
+  image       String   @default("")
+  channelId   String
+  channelName String
+  category    String
+  tags        String   @default("[]") // JSON array
+  isLive      Boolean  @default(false)
+  isReplay    Boolean  @default(false)
+  isFeatured  Boolean  @default(false)
+  isFree      Boolean  @default(true)
+  price       Int?     // en FCFA
+  currency    String   @default("FCFA")
+  viewerCount Int      @default(0)
+  streamUrl   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  channel Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  tickets Ticket[]
+}
+
+model Ticket {
+  id          String       @id @default(cuid())
+  eventId     String
+  userId      String
+  holderName  String
+  holderEmail String
+  qrCode      String       @unique
+  status      TicketStatus @default(valid)
+  price       Int
+  currency    String       @default("FCFA")
+  purchaseDate DateTime    @default(now())
+  streamUrl   String?
+
+  event StreamingEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user  User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model WatchHistory {
+  id         String   @id @default(cuid())
+  userId     String
+  eventId    String
+  eventTitle String
+  watchedAt  DateTime @default(now())
+  progress   Int      @default(0) // 0-100 %
+  duration   String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
+}
