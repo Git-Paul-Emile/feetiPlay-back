@@ -1,12 +1,27 @@
 import { StatusCodes } from "http-status-codes";
 import { AppError } from "../utils/AppError.js";
 import { eventsRepository } from "../repositories/events.repository.js";
+import type { SyncedLiveEventInput } from "../repositories/events.repository.js";
 
-// Désérialise les tags JSON stockés en DB
+function parseTags(raw: string) {
+  try {
+    return JSON.parse(raw) as string[];
+  } catch {
+    return [];
+  }
+}
+
+function parseOrganizerId(tags: string[]) {
+  return tags.find((tag) => tag.startsWith("organizer:"))?.slice("organizer:".length) ?? "";
+}
+
 function parseEvent<T extends { tags: string }>(event: T) {
+  const tags = parseTags(event.tags);
   return {
     ...event,
-    tags: (() => { try { return JSON.parse(event.tags) as string[]; } catch { return []; } })(),
+    tags,
+    organizerId: parseOrganizerId(tags),
+    videoUrl: event.streamUrl ?? null,
   };
 }
 
@@ -18,7 +33,7 @@ export const eventsService = {
 
   async getById(id: string) {
     const event = await eventsRepository.findById(id);
-    if (!event) throw new AppError("Événement non trouvé", StatusCodes.NOT_FOUND);
+    if (!event) throw new AppError("�v�nement non trouv�", StatusCodes.NOT_FOUND);
     return parseEvent(event);
   },
 
@@ -45,5 +60,19 @@ export const eventsService = {
   async search(query: string) {
     if (!query.trim()) return eventsService.getAll();
     return (await eventsRepository.search(query.trim())).map(parseEvent);
+  },
+
+  async syncFromFeeti2(data: SyncedLiveEventInput) {
+    const event = await eventsRepository.upsertSyncedLiveEvent(data);
+    return parseEvent(event);
+  },
+
+  async deleteSyncedEvent(id: string) {
+    await eventsRepository.deleteById(id);
+    return { deleted: true as const };
+  },
+
+  async getSyncedByOrganizer(organizerId: string) {
+    return (await eventsRepository.findSyncedByOrganizer(organizerId)).map(parseEvent);
   },
 };

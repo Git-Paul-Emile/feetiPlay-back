@@ -54,7 +54,8 @@ export const ModelName = {
   Channel: 'Channel',
   StreamingEvent: 'StreamingEvent',
   Ticket: 'Ticket',
-  WatchHistory: 'WatchHistory'
+  WatchHistory: 'WatchHistory',
+  UserFavorite: 'UserFavorite'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -142,6 +143,7 @@ export const StreamingEventScalarFieldEnum = {
   currency: 'currency',
   viewerCount: 'viewerCount',
   streamUrl: 'streamUrl',
+  location: 'location',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -177,6 +179,16 @@ export const WatchHistoryScalarFieldEnum = {
 } as const
 
 export type WatchHistoryScalarFieldEnum = (typeof WatchHistoryScalarFieldEnum)[keyof typeof WatchHistoryScalarFieldEnum]
+
+
+export const UserFavoriteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventId: 'eventId',
+  createdAt: 'createdAt'
+} as const
+
+export type UserFavoriteScalarFieldEnum = (typeof UserFavoriteScalarFieldEnum)[keyof typeof UserFavoriteScalarFieldEnum]
 
 
 export const SortOrder = {

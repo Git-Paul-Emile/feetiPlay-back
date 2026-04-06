@@ -8,13 +8,19 @@ import adminAuthRouter from "../routes/adminAuth.routes.js";
 import channelsRouter from "../routes/channels.routes.js";
 import eventsRouter from "../routes/events.routes.js";
 import streamingRouter from "../routes/streaming.routes.js";
+import favoritesRouter from "../routes/favorites.routes.js";
+import integrationRouter from "../routes/integration.routes.js";
 
 const app = express();
 
+const buildLocalhostOrigins = (startPort: number, count: number) =>
+  Array.from({ length: count }, (_, index) => `http://localhost:${startPort + index}`);
+
 const allowedOrigins = [
   process.env.FRONT_URL || "http://localhost:5173",
-  "http://localhost:5173",
-  "http://localhost:3000",
+  process.env.FEETI2_FRONT_URL || "http://localhost:3000",
+  ...buildLocalhostOrigins(5173, 3),
+  ...buildLocalhostOrigins(3000, 3),
 ];
 
 const corsOptions = {
@@ -40,8 +46,10 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/admin/auth", adminAuthRouter);
 app.use("/api/channels", channelsRouter);
-app.use("/api/events", eventsRouter);
 app.use("/api/streaming", streamingRouter);
+app.use("/api/events", favoritesRouter);
+app.use("/api/events", eventsRouter);
+app.use("/api/integration", integrationRouter);
 
 // 404
 app.use((_req, res) => {

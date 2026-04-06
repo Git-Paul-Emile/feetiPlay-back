@@ -56,6 +56,7 @@ export type StreamingEventMinAggregateOutputType = {
   currency: string | null
   viewerCount: number | null
   streamUrl: string | null
+  location: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -80,6 +81,7 @@ export type StreamingEventMaxAggregateOutputType = {
   currency: string | null
   viewerCount: number | null
   streamUrl: string | null
+  location: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -104,6 +106,7 @@ export type StreamingEventCountAggregateOutputType = {
   currency: number
   viewerCount: number
   streamUrl: number
+  location: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -140,6 +143,7 @@ export type StreamingEventMinAggregateInputType = {
   currency?: true
   viewerCount?: true
   streamUrl?: true
+  location?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -164,6 +168,7 @@ export type StreamingEventMaxAggregateInputType = {
   currency?: true
   viewerCount?: true
   streamUrl?: true
+  location?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -188,6 +193,7 @@ export type StreamingEventCountAggregateInputType = {
   currency?: true
   viewerCount?: true
   streamUrl?: true
+  location?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -299,6 +305,7 @@ export type StreamingEventGroupByOutputType = {
   currency: string
   viewerCount: number
   streamUrl: string | null
+  location: string | null
   createdAt: Date
   updatedAt: Date
   _count: StreamingEventCountAggregateOutputType | null
@@ -346,10 +353,12 @@ export type StreamingEventWhereInput = {
   currency?: Prisma.StringFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
+  location?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   channel?: Prisma.XOR<Prisma.ChannelScalarRelationFilter, Prisma.ChannelWhereInput>
   tickets?: Prisma.TicketListRelationFilter
+  favorites?: Prisma.UserFavoriteListRelationFilter
 }
 
 export type StreamingEventOrderByWithRelationInput = {
@@ -372,10 +381,12 @@ export type StreamingEventOrderByWithRelationInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   channel?: Prisma.ChannelOrderByWithRelationInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
+  favorites?: Prisma.UserFavoriteOrderByRelationAggregateInput
 }
 
 export type StreamingEventWhereUniqueInput = Prisma.AtLeast<{
@@ -401,10 +412,12 @@ export type StreamingEventWhereUniqueInput = Prisma.AtLeast<{
   currency?: Prisma.StringFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
+  location?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   channel?: Prisma.XOR<Prisma.ChannelScalarRelationFilter, Prisma.ChannelWhereInput>
   tickets?: Prisma.TicketListRelationFilter
+  favorites?: Prisma.UserFavoriteListRelationFilter
 }, "id">
 
 export type StreamingEventOrderByWithAggregationInput = {
@@ -427,6 +440,7 @@ export type StreamingEventOrderByWithAggregationInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.StreamingEventCountOrderByAggregateInput
@@ -459,6 +473,7 @@ export type StreamingEventScalarWhereWithAggregatesInput = {
   currency?: Prisma.StringWithAggregatesFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntWithAggregatesFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableWithAggregatesFilter<"StreamingEvent"> | string | null
+  location?: Prisma.StringNullableWithAggregatesFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"StreamingEvent"> | Date | string
 }
@@ -482,10 +497,12 @@ export type StreamingEventCreateInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   channel: Prisma.ChannelCreateNestedOneWithoutEventsInput
   tickets?: Prisma.TicketCreateNestedManyWithoutEventInput
+  favorites?: Prisma.UserFavoriteCreateNestedManyWithoutStreamingEventInput
 }
 
 export type StreamingEventUncheckedCreateInput = {
@@ -508,9 +525,11 @@ export type StreamingEventUncheckedCreateInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutEventInput
+  favorites?: Prisma.UserFavoriteUncheckedCreateNestedManyWithoutStreamingEventInput
 }
 
 export type StreamingEventUpdateInput = {
@@ -532,10 +551,12 @@ export type StreamingEventUpdateInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   channel?: Prisma.ChannelUpdateOneRequiredWithoutEventsNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutEventNestedInput
+  favorites?: Prisma.UserFavoriteUpdateManyWithoutStreamingEventNestedInput
 }
 
 export type StreamingEventUncheckedUpdateInput = {
@@ -558,9 +579,11 @@ export type StreamingEventUncheckedUpdateInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutEventNestedInput
+  favorites?: Prisma.UserFavoriteUncheckedUpdateManyWithoutStreamingEventNestedInput
 }
 
 export type StreamingEventCreateManyInput = {
@@ -583,6 +606,7 @@ export type StreamingEventCreateManyInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -606,6 +630,7 @@ export type StreamingEventUpdateManyMutationInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -630,6 +655,7 @@ export type StreamingEventUncheckedUpdateManyInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -664,6 +690,7 @@ export type StreamingEventCountOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -693,6 +720,7 @@ export type StreamingEventMaxOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -717,6 +745,7 @@ export type StreamingEventMinOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrder
+  location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -795,6 +824,20 @@ export type StreamingEventUpdateOneRequiredWithoutTicketsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StreamingEventUpdateToOneWithWhereWithoutTicketsInput, Prisma.StreamingEventUpdateWithoutTicketsInput>, Prisma.StreamingEventUncheckedUpdateWithoutTicketsInput>
 }
 
+export type StreamingEventCreateNestedOneWithoutFavoritesInput = {
+  create?: Prisma.XOR<Prisma.StreamingEventCreateWithoutFavoritesInput, Prisma.StreamingEventUncheckedCreateWithoutFavoritesInput>
+  connectOrCreate?: Prisma.StreamingEventCreateOrConnectWithoutFavoritesInput
+  connect?: Prisma.StreamingEventWhereUniqueInput
+}
+
+export type StreamingEventUpdateOneRequiredWithoutFavoritesNestedInput = {
+  create?: Prisma.XOR<Prisma.StreamingEventCreateWithoutFavoritesInput, Prisma.StreamingEventUncheckedCreateWithoutFavoritesInput>
+  connectOrCreate?: Prisma.StreamingEventCreateOrConnectWithoutFavoritesInput
+  upsert?: Prisma.StreamingEventUpsertWithoutFavoritesInput
+  connect?: Prisma.StreamingEventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StreamingEventUpdateToOneWithWhereWithoutFavoritesInput, Prisma.StreamingEventUpdateWithoutFavoritesInput>, Prisma.StreamingEventUncheckedUpdateWithoutFavoritesInput>
+}
+
 export type StreamingEventCreateWithoutChannelInput = {
   id?: string
   title: string
@@ -814,9 +857,11 @@ export type StreamingEventCreateWithoutChannelInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tickets?: Prisma.TicketCreateNestedManyWithoutEventInput
+  favorites?: Prisma.UserFavoriteCreateNestedManyWithoutStreamingEventInput
 }
 
 export type StreamingEventUncheckedCreateWithoutChannelInput = {
@@ -838,9 +883,11 @@ export type StreamingEventUncheckedCreateWithoutChannelInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutEventInput
+  favorites?: Prisma.UserFavoriteUncheckedCreateNestedManyWithoutStreamingEventInput
 }
 
 export type StreamingEventCreateOrConnectWithoutChannelInput = {
@@ -892,6 +939,7 @@ export type StreamingEventScalarWhereInput = {
   currency?: Prisma.StringFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
+  location?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
 }
@@ -915,9 +963,11 @@ export type StreamingEventCreateWithoutTicketsInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   channel: Prisma.ChannelCreateNestedOneWithoutEventsInput
+  favorites?: Prisma.UserFavoriteCreateNestedManyWithoutStreamingEventInput
 }
 
 export type StreamingEventUncheckedCreateWithoutTicketsInput = {
@@ -940,8 +990,10 @@ export type StreamingEventUncheckedCreateWithoutTicketsInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  favorites?: Prisma.UserFavoriteUncheckedCreateNestedManyWithoutStreamingEventInput
 }
 
 export type StreamingEventCreateOrConnectWithoutTicketsInput = {
@@ -979,9 +1031,11 @@ export type StreamingEventUpdateWithoutTicketsInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   channel?: Prisma.ChannelUpdateOneRequiredWithoutEventsNestedInput
+  favorites?: Prisma.UserFavoriteUpdateManyWithoutStreamingEventNestedInput
 }
 
 export type StreamingEventUncheckedUpdateWithoutTicketsInput = {
@@ -1004,8 +1058,130 @@ export type StreamingEventUncheckedUpdateWithoutTicketsInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  favorites?: Prisma.UserFavoriteUncheckedUpdateManyWithoutStreamingEventNestedInput
+}
+
+export type StreamingEventCreateWithoutFavoritesInput = {
+  id?: string
+  title: string
+  description: string
+  date: string
+  time: string
+  duration: string
+  image?: string
+  channelName: string
+  category: string
+  tags?: string
+  isLive?: boolean
+  isReplay?: boolean
+  isFeatured?: boolean
+  isFree?: boolean
+  price?: number | null
+  currency?: string
+  viewerCount?: number
+  streamUrl?: string | null
+  location?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  channel: Prisma.ChannelCreateNestedOneWithoutEventsInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutEventInput
+}
+
+export type StreamingEventUncheckedCreateWithoutFavoritesInput = {
+  id?: string
+  title: string
+  description: string
+  date: string
+  time: string
+  duration: string
+  image?: string
+  channelId: string
+  channelName: string
+  category: string
+  tags?: string
+  isLive?: boolean
+  isReplay?: boolean
+  isFeatured?: boolean
+  isFree?: boolean
+  price?: number | null
+  currency?: string
+  viewerCount?: number
+  streamUrl?: string | null
+  location?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type StreamingEventCreateOrConnectWithoutFavoritesInput = {
+  where: Prisma.StreamingEventWhereUniqueInput
+  create: Prisma.XOR<Prisma.StreamingEventCreateWithoutFavoritesInput, Prisma.StreamingEventUncheckedCreateWithoutFavoritesInput>
+}
+
+export type StreamingEventUpsertWithoutFavoritesInput = {
+  update: Prisma.XOR<Prisma.StreamingEventUpdateWithoutFavoritesInput, Prisma.StreamingEventUncheckedUpdateWithoutFavoritesInput>
+  create: Prisma.XOR<Prisma.StreamingEventCreateWithoutFavoritesInput, Prisma.StreamingEventUncheckedCreateWithoutFavoritesInput>
+  where?: Prisma.StreamingEventWhereInput
+}
+
+export type StreamingEventUpdateToOneWithWhereWithoutFavoritesInput = {
+  where?: Prisma.StreamingEventWhereInput
+  data: Prisma.XOR<Prisma.StreamingEventUpdateWithoutFavoritesInput, Prisma.StreamingEventUncheckedUpdateWithoutFavoritesInput>
+}
+
+export type StreamingEventUpdateWithoutFavoritesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  channelName?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  tags?: Prisma.StringFieldUpdateOperationsInput | string
+  isLive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReplay?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  channel?: Prisma.ChannelUpdateOneRequiredWithoutEventsNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutEventNestedInput
+}
+
+export type StreamingEventUncheckedUpdateWithoutFavoritesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
+  duration?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
+  channelId?: Prisma.StringFieldUpdateOperationsInput | string
+  channelName?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  tags?: Prisma.StringFieldUpdateOperationsInput | string
+  isLive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isReplay?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type StreamingEventCreateManyChannelInput = {
@@ -1027,6 +1203,7 @@ export type StreamingEventCreateManyChannelInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1050,9 +1227,11 @@ export type StreamingEventUpdateWithoutChannelInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tickets?: Prisma.TicketUpdateManyWithoutEventNestedInput
+  favorites?: Prisma.UserFavoriteUpdateManyWithoutStreamingEventNestedInput
 }
 
 export type StreamingEventUncheckedUpdateWithoutChannelInput = {
@@ -1074,9 +1253,11 @@ export type StreamingEventUncheckedUpdateWithoutChannelInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutEventNestedInput
+  favorites?: Prisma.UserFavoriteUncheckedUpdateManyWithoutStreamingEventNestedInput
 }
 
 export type StreamingEventUncheckedUpdateManyWithoutChannelInput = {
@@ -1098,6 +1279,7 @@ export type StreamingEventUncheckedUpdateManyWithoutChannelInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1109,10 +1291,12 @@ export type StreamingEventUncheckedUpdateManyWithoutChannelInput = {
 
 export type StreamingEventCountOutputType = {
   tickets: number
+  favorites: number
 }
 
 export type StreamingEventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tickets?: boolean | StreamingEventCountOutputTypeCountTicketsArgs
+  favorites?: boolean | StreamingEventCountOutputTypeCountFavoritesArgs
 }
 
 /**
@@ -1130,6 +1314,13 @@ export type StreamingEventCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
  */
 export type StreamingEventCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TicketWhereInput
+}
+
+/**
+ * StreamingEventCountOutputType without action
+ */
+export type StreamingEventCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserFavoriteWhereInput
 }
 
 
@@ -1153,10 +1344,12 @@ export type StreamingEventSelect<ExtArgs extends runtime.Types.Extensions.Intern
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.StreamingEvent$ticketsArgs<ExtArgs>
+  favorites?: boolean | Prisma.StreamingEvent$favoritesArgs<ExtArgs>
   _count?: boolean | Prisma.StreamingEventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["streamingEvent"]>
 
@@ -1180,6 +1373,7 @@ export type StreamingEventSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>
@@ -1205,6 +1399,7 @@ export type StreamingEventSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>
@@ -1230,14 +1425,16 @@ export type StreamingEventSelectScalar = {
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StreamingEventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "date" | "time" | "duration" | "image" | "channelId" | "channelName" | "category" | "tags" | "isLive" | "isReplay" | "isFeatured" | "isFree" | "price" | "currency" | "viewerCount" | "streamUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["streamingEvent"]>
+export type StreamingEventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "date" | "time" | "duration" | "image" | "channelId" | "channelName" | "category" | "tags" | "isLive" | "isReplay" | "isFeatured" | "isFree" | "price" | "currency" | "viewerCount" | "streamUrl" | "location" | "createdAt" | "updatedAt", ExtArgs["result"]["streamingEvent"]>
 export type StreamingEventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.StreamingEvent$ticketsArgs<ExtArgs>
+  favorites?: boolean | Prisma.StreamingEvent$favoritesArgs<ExtArgs>
   _count?: boolean | Prisma.StreamingEventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StreamingEventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1252,6 +1449,7 @@ export type $StreamingEventPayload<ExtArgs extends runtime.Types.Extensions.Inte
   objects: {
     channel: Prisma.$ChannelPayload<ExtArgs>
     tickets: Prisma.$TicketPayload<ExtArgs>[]
+    favorites: Prisma.$UserFavoritePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1273,6 +1471,7 @@ export type $StreamingEventPayload<ExtArgs extends runtime.Types.Extensions.Inte
     currency: string
     viewerCount: number
     streamUrl: string | null
+    location: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["streamingEvent"]>
@@ -1671,6 +1870,7 @@ export interface Prisma__StreamingEventClient<T, Null = never, ExtArgs extends r
   readonly [Symbol.toStringTag]: "PrismaPromise"
   channel<T extends Prisma.ChannelDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChannelDefaultArgs<ExtArgs>>): Prisma.Prisma__ChannelClient<runtime.Types.Result.GetResult<Prisma.$ChannelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tickets<T extends Prisma.StreamingEvent$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StreamingEvent$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  favorites<T extends Prisma.StreamingEvent$favoritesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StreamingEvent$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserFavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1719,6 +1919,7 @@ export interface StreamingEventFieldRefs {
   readonly currency: Prisma.FieldRef<"StreamingEvent", 'String'>
   readonly viewerCount: Prisma.FieldRef<"StreamingEvent", 'Int'>
   readonly streamUrl: Prisma.FieldRef<"StreamingEvent", 'String'>
+  readonly location: Prisma.FieldRef<"StreamingEvent", 'String'>
   readonly createdAt: Prisma.FieldRef<"StreamingEvent", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"StreamingEvent", 'DateTime'>
 }
@@ -2138,6 +2339,30 @@ export type StreamingEvent$ticketsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.TicketScalarFieldEnum | Prisma.TicketScalarFieldEnum[]
+}
+
+/**
+ * StreamingEvent.favorites
+ */
+export type StreamingEvent$favoritesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserFavorite
+   */
+  select?: Prisma.UserFavoriteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserFavorite
+   */
+  omit?: Prisma.UserFavoriteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserFavoriteInclude<ExtArgs> | null
+  where?: Prisma.UserFavoriteWhereInput
+  orderBy?: Prisma.UserFavoriteOrderByWithRelationInput | Prisma.UserFavoriteOrderByWithRelationInput[]
+  cursor?: Prisma.UserFavoriteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserFavoriteScalarFieldEnum | Prisma.UserFavoriteScalarFieldEnum[]
 }
 
 /**

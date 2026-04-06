@@ -47,3 +47,8 @@ export type Ticket = Prisma.TicketModel
  * 
  */
 export type WatchHistory = Prisma.WatchHistoryModel
+/**
+ * Model UserFavorite
+ * 
+ */
+export type UserFavorite = Prisma.UserFavoriteModel

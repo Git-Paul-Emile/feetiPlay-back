@@ -395,7 +395,8 @@ export const ModelName = {
   Channel: 'Channel',
   StreamingEvent: 'StreamingEvent',
   Ticket: 'Ticket',
-  WatchHistory: 'WatchHistory'
+  WatchHistory: 'WatchHistory',
+  UserFavorite: 'UserFavorite'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "adminUser" | "channel" | "streamingEvent" | "ticket" | "watchHistory"
+    modelProps: "user" | "adminUser" | "channel" | "streamingEvent" | "ticket" | "watchHistory" | "userFavorite"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -859,6 +860,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UserFavorite: {
+      payload: Prisma.$UserFavoritePayload<ExtArgs>
+      fields: Prisma.UserFavoriteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserFavoriteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserFavoriteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>
+        }
+        findFirst: {
+          args: Prisma.UserFavoriteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserFavoriteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>
+        }
+        findMany: {
+          args: Prisma.UserFavoriteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>[]
+        }
+        create: {
+          args: Prisma.UserFavoriteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>
+        }
+        createMany: {
+          args: Prisma.UserFavoriteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserFavoriteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>[]
+        }
+        delete: {
+          args: Prisma.UserFavoriteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>
+        }
+        update: {
+          args: Prisma.UserFavoriteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>
+        }
+        deleteMany: {
+          args: Prisma.UserFavoriteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserFavoriteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserFavoriteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>[]
+        }
+        upsert: {
+          args: Prisma.UserFavoriteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserFavoritePayload>
+        }
+        aggregate: {
+          args: Prisma.UserFavoriteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserFavorite>
+        }
+        groupBy: {
+          args: Prisma.UserFavoriteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserFavoriteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserFavoriteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserFavoriteCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -967,6 +1042,7 @@ export const StreamingEventScalarFieldEnum = {
   currency: 'currency',
   viewerCount: 'viewerCount',
   streamUrl: 'streamUrl',
+  location: 'location',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1002,6 +1078,16 @@ export const WatchHistoryScalarFieldEnum = {
 } as const
 
 export type WatchHistoryScalarFieldEnum = (typeof WatchHistoryScalarFieldEnum)[keyof typeof WatchHistoryScalarFieldEnum]
+
+
+export const UserFavoriteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventId: 'eventId',
+  createdAt: 'createdAt'
+} as const
+
+export type UserFavoriteScalarFieldEnum = (typeof UserFavoriteScalarFieldEnum)[keyof typeof UserFavoriteScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1245,6 +1331,7 @@ export type GlobalOmitConfig = {
   streamingEvent?: Prisma.StreamingEventOmit
   ticket?: Prisma.TicketOmit
   watchHistory?: Prisma.WatchHistoryOmit
+  userFavorite?: Prisma.UserFavoriteOmit
 }
 
 /* Types for Logging */

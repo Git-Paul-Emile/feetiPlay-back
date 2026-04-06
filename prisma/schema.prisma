@@ -41,6 +41,7 @@ enum TicketStatus {
 
 // ── Modèles ──────────────────────────────────────────────────────────────────
 
+// Table propre à feetiPlay dans la DB feeti2 (évite conflit avec User de feeti2)
 model User {
   id               String           @id @default(cuid())
   name             String
@@ -53,10 +54,14 @@ model User {
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
 
-  tickets      Ticket[]
-  watchHistory WatchHistory[]
+  tickets         Ticket[]
+  watchHistory    WatchHistory[]
+  favorites      UserFavorite[]
+
+  @@map("FeetiPlayUser")
 }
 
+// Table propre à feetiPlay dans la DB feeti2 (évite conflit avec les admins feeti2 via Role)
 model AdminUser {
   id           String    @id @default(cuid())
   name         String
@@ -66,6 +71,8 @@ model AdminUser {
   role         AdminRole
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+
+  @@map("FeetiPlayAdminUser")
 }
 
 model Channel {
@@ -106,13 +113,16 @@ model StreamingEvent {
   currency    String   @default("FCFA")
   viewerCount Int      @default(0)
   streamUrl   String?
+  location    String?  // Lieu physique ou en ligne
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  channel Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
-  tickets Ticket[]
+  channel    Channel        @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  tickets   Ticket[]
+  favorites UserFavorite[]
 }
 
+// Évite conflit avec la table Ticket de feeti2
 model Ticket {
   id          String       @id @default(cuid())
   eventId     String
@@ -128,8 +138,11 @@ model Ticket {
 
   event StreamingEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
   user  User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("StreamingTicket")
 }
 
+// Évite conflit avec la table WatchHistory potentielle de feeti2
 model WatchHistory {
   id         String   @id @default(cuid())
   userId     String
@@ -142,4 +155,18 @@ model WatchHistory {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, eventId])
+  @@map("FeetiPlayWatchHistory")
+}
+
+// Évite conflit avec la table UserFavorite de feeti2
+model UserFavorite {
+  id           String         @id @default(cuid())
+  userId        String
+  eventId       String
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  streamingEvent StreamingEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  createdAt    DateTime       @default(now())
+
+  @@unique([userId, eventId])
+  @@map("StreamingFavorite")
 }
