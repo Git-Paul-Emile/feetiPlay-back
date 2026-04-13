@@ -7,6 +7,8 @@ import {
   updateWatchProgress,
   getWatchHistory,
   clearWatchHistory,
+  liveViewerCount,
+  getMuxToken,
 } from "../controllers/streaming.controller.js";
 import { authenticate } from "../middlewares/authenticate.js";
 
@@ -24,5 +26,11 @@ router.get( "/tickets/:id", authenticate, getTicketById);
 router.get(   "/watch-history", authenticate, getWatchHistory);
 router.post(  "/watch-history", authenticate, updateWatchProgress);
 router.delete("/watch-history", authenticate, clearWatchHistory);
+
+// Signed token Mux (pour playback sécurisé des events payants)
+router.get("/mux-token/:eventId", authenticate, getMuxToken);
+
+// SSE viewer count (pas d'auth — accès public)
+router.get("/live/:eventId/viewers", liveViewerCount);
 
 export default router;

@@ -56,6 +56,7 @@ export type StreamingEventMinAggregateOutputType = {
   currency: string | null
   viewerCount: number | null
   streamUrl: string | null
+  muxStreamId: string | null
   location: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -81,6 +82,7 @@ export type StreamingEventMaxAggregateOutputType = {
   currency: string | null
   viewerCount: number | null
   streamUrl: string | null
+  muxStreamId: string | null
   location: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -106,6 +108,7 @@ export type StreamingEventCountAggregateOutputType = {
   currency: number
   viewerCount: number
   streamUrl: number
+  muxStreamId: number
   location: number
   createdAt: number
   updatedAt: number
@@ -143,6 +146,7 @@ export type StreamingEventMinAggregateInputType = {
   currency?: true
   viewerCount?: true
   streamUrl?: true
+  muxStreamId?: true
   location?: true
   createdAt?: true
   updatedAt?: true
@@ -168,6 +172,7 @@ export type StreamingEventMaxAggregateInputType = {
   currency?: true
   viewerCount?: true
   streamUrl?: true
+  muxStreamId?: true
   location?: true
   createdAt?: true
   updatedAt?: true
@@ -193,6 +198,7 @@ export type StreamingEventCountAggregateInputType = {
   currency?: true
   viewerCount?: true
   streamUrl?: true
+  muxStreamId?: true
   location?: true
   createdAt?: true
   updatedAt?: true
@@ -305,6 +311,7 @@ export type StreamingEventGroupByOutputType = {
   currency: string
   viewerCount: number
   streamUrl: string | null
+  muxStreamId: string | null
   location: string | null
   createdAt: Date
   updatedAt: Date
@@ -353,6 +360,7 @@ export type StreamingEventWhereInput = {
   currency?: Prisma.StringFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
+  muxStreamId?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   location?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
@@ -381,6 +389,7 @@ export type StreamingEventOrderByWithRelationInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  muxStreamId?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -412,6 +421,7 @@ export type StreamingEventWhereUniqueInput = Prisma.AtLeast<{
   currency?: Prisma.StringFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
+  muxStreamId?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   location?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
@@ -440,6 +450,7 @@ export type StreamingEventOrderByWithAggregationInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  muxStreamId?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -473,6 +484,7 @@ export type StreamingEventScalarWhereWithAggregatesInput = {
   currency?: Prisma.StringWithAggregatesFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntWithAggregatesFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableWithAggregatesFilter<"StreamingEvent"> | string | null
+  muxStreamId?: Prisma.StringNullableWithAggregatesFilter<"StreamingEvent"> | string | null
   location?: Prisma.StringNullableWithAggregatesFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"StreamingEvent"> | Date | string
@@ -497,6 +509,7 @@ export type StreamingEventCreateInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -525,6 +538,7 @@ export type StreamingEventUncheckedCreateInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -551,6 +565,7 @@ export type StreamingEventUpdateInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -579,6 +594,7 @@ export type StreamingEventUncheckedUpdateInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -606,6 +622,7 @@ export type StreamingEventCreateManyInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -630,6 +647,7 @@ export type StreamingEventUpdateManyMutationInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -655,6 +673,7 @@ export type StreamingEventUncheckedUpdateManyInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -690,6 +709,7 @@ export type StreamingEventCountOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrder
+  muxStreamId?: Prisma.SortOrder
   location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -720,6 +740,7 @@ export type StreamingEventMaxOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrder
+  muxStreamId?: Prisma.SortOrder
   location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -745,6 +766,7 @@ export type StreamingEventMinOrderByAggregateInput = {
   currency?: Prisma.SortOrder
   viewerCount?: Prisma.SortOrder
   streamUrl?: Prisma.SortOrder
+  muxStreamId?: Prisma.SortOrder
   location?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -857,6 +879,7 @@ export type StreamingEventCreateWithoutChannelInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -883,6 +906,7 @@ export type StreamingEventUncheckedCreateWithoutChannelInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -939,6 +963,7 @@ export type StreamingEventScalarWhereInput = {
   currency?: Prisma.StringFilter<"StreamingEvent"> | string
   viewerCount?: Prisma.IntFilter<"StreamingEvent"> | number
   streamUrl?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
+  muxStreamId?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   location?: Prisma.StringNullableFilter<"StreamingEvent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StreamingEvent"> | Date | string
@@ -963,6 +988,7 @@ export type StreamingEventCreateWithoutTicketsInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -990,6 +1016,7 @@ export type StreamingEventUncheckedCreateWithoutTicketsInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1031,6 +1058,7 @@ export type StreamingEventUpdateWithoutTicketsInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1058,6 +1086,7 @@ export type StreamingEventUncheckedUpdateWithoutTicketsInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1083,6 +1112,7 @@ export type StreamingEventCreateWithoutFavoritesInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1110,6 +1140,7 @@ export type StreamingEventUncheckedCreateWithoutFavoritesInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1151,6 +1182,7 @@ export type StreamingEventUpdateWithoutFavoritesInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1178,6 +1210,7 @@ export type StreamingEventUncheckedUpdateWithoutFavoritesInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1203,6 +1236,7 @@ export type StreamingEventCreateManyChannelInput = {
   currency?: string
   viewerCount?: number
   streamUrl?: string | null
+  muxStreamId?: string | null
   location?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1227,6 +1261,7 @@ export type StreamingEventUpdateWithoutChannelInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1253,6 +1288,7 @@ export type StreamingEventUncheckedUpdateWithoutChannelInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1279,6 +1315,7 @@ export type StreamingEventUncheckedUpdateManyWithoutChannelInput = {
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   viewerCount?: Prisma.IntFieldUpdateOperationsInput | number
   streamUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  muxStreamId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1344,6 +1381,7 @@ export type StreamingEventSelect<ExtArgs extends runtime.Types.Extensions.Intern
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  muxStreamId?: boolean
   location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1373,6 +1411,7 @@ export type StreamingEventSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  muxStreamId?: boolean
   location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1399,6 +1438,7 @@ export type StreamingEventSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  muxStreamId?: boolean
   location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1425,12 +1465,13 @@ export type StreamingEventSelectScalar = {
   currency?: boolean
   viewerCount?: boolean
   streamUrl?: boolean
+  muxStreamId?: boolean
   location?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StreamingEventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "date" | "time" | "duration" | "image" | "channelId" | "channelName" | "category" | "tags" | "isLive" | "isReplay" | "isFeatured" | "isFree" | "price" | "currency" | "viewerCount" | "streamUrl" | "location" | "createdAt" | "updatedAt", ExtArgs["result"]["streamingEvent"]>
+export type StreamingEventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "date" | "time" | "duration" | "image" | "channelId" | "channelName" | "category" | "tags" | "isLive" | "isReplay" | "isFeatured" | "isFree" | "price" | "currency" | "viewerCount" | "streamUrl" | "muxStreamId" | "location" | "createdAt" | "updatedAt", ExtArgs["result"]["streamingEvent"]>
 export type StreamingEventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.StreamingEvent$ticketsArgs<ExtArgs>
@@ -1471,6 +1512,7 @@ export type $StreamingEventPayload<ExtArgs extends runtime.Types.Extensions.Inte
     currency: string
     viewerCount: number
     streamUrl: string | null
+    muxStreamId: string | null
     location: string | null
     createdAt: Date
     updatedAt: Date
@@ -1919,6 +1961,7 @@ export interface StreamingEventFieldRefs {
   readonly currency: Prisma.FieldRef<"StreamingEvent", 'String'>
   readonly viewerCount: Prisma.FieldRef<"StreamingEvent", 'Int'>
   readonly streamUrl: Prisma.FieldRef<"StreamingEvent", 'String'>
+  readonly muxStreamId: Prisma.FieldRef<"StreamingEvent", 'String'>
   readonly location: Prisma.FieldRef<"StreamingEvent", 'String'>
   readonly createdAt: Prisma.FieldRef<"StreamingEvent", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"StreamingEvent", 'DateTime'>

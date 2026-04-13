@@ -113,6 +113,7 @@ model StreamingEvent {
   currency    String   @default("FCFA")
   viewerCount Int      @default(0)
   streamUrl   String?
+  muxStreamId String?  // ID du live stream Mux (pour le webhook)
   location    String?  // Lieu physique ou en ligne
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -156,6 +157,35 @@ model WatchHistory {
 
   @@unique([userId, eventId])
   @@map("FeetiPlayWatchHistory")
+}
+
+model AdminNotification {
+  id        String   @id @default(cuid())
+  title     String
+  message   String
+  type      String   @default("info") // info | warning | promo | maintenance
+  audience  String   @default("all") // all | premium | free
+  sentBy    String
+  sentAt    DateTime @default(now())
+  readCount Int      @default(0)
+
+  @@index([sentAt(sort: Desc)])
+  @@map("FeetiPlayAdminNotification")
+}
+
+model SystemLog {
+  id          String   @id @default(cuid())
+  action      String
+  description String
+  level       String   @default("info") // info | success | warning | error
+  adminName   String
+  adminRole   String
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([level])
+  @@map("FeetiPlaySystemLog")
 }
 
 // Évite conflit avec la table UserFavorite de feeti2

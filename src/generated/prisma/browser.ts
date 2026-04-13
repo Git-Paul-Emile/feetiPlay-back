@@ -48,6 +48,16 @@ export type Ticket = Prisma.TicketModel
  */
 export type WatchHistory = Prisma.WatchHistoryModel
 /**
+ * Model AdminNotification
+ * 
+ */
+export type AdminNotification = Prisma.AdminNotificationModel
+/**
+ * Model SystemLog
+ * 
+ */
+export type SystemLog = Prisma.SystemLogModel
+/**
  * Model UserFavorite
  * 
  */

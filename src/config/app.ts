@@ -10,6 +10,10 @@ import eventsRouter from "../routes/events.routes.js";
 import streamingRouter from "../routes/streaming.routes.js";
 import favoritesRouter from "../routes/favorites.routes.js";
 import integrationRouter from "../routes/integration.routes.js";
+import adminRouter from "../routes/admin.routes.js";
+import uploadRouter from "../routes/upload.routes.js";
+import paymentRouter from "../routes/payment.routes.js";
+import webhooksRouter from "../routes/webhooks.routes.js";
 
 const app = express();
 
@@ -50,6 +54,12 @@ app.use("/api/streaming", streamingRouter);
 app.use("/api/events", favoritesRouter);
 app.use("/api/events", eventsRouter);
 app.use("/api/integration", integrationRouter);
+app.use("/api/admin", adminRouter);
+app.use("/api/upload", uploadRouter);
+// ─── Paiements (proxy feeti2 + streaming local) ───────────────────────
+app.use("/api/payments", paymentRouter);
+// ─── Webhooks externes (Mux, etc.) — pas d'auth, vérification par signature ──
+app.use("/api/webhooks", webhooksRouter);
 
 // 404
 app.use((_req, res) => {

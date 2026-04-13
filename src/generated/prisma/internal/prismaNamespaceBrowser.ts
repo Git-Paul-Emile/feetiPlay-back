@@ -55,6 +55,8 @@ export const ModelName = {
   StreamingEvent: 'StreamingEvent',
   Ticket: 'Ticket',
   WatchHistory: 'WatchHistory',
+  AdminNotification: 'AdminNotification',
+  SystemLog: 'SystemLog',
   UserFavorite: 'UserFavorite'
 } as const
 
@@ -143,6 +145,7 @@ export const StreamingEventScalarFieldEnum = {
   currency: 'currency',
   viewerCount: 'viewerCount',
   streamUrl: 'streamUrl',
+  muxStreamId: 'muxStreamId',
   location: 'location',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -179,6 +182,34 @@ export const WatchHistoryScalarFieldEnum = {
 } as const
 
 export type WatchHistoryScalarFieldEnum = (typeof WatchHistoryScalarFieldEnum)[keyof typeof WatchHistoryScalarFieldEnum]
+
+
+export const AdminNotificationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  audience: 'audience',
+  sentBy: 'sentBy',
+  sentAt: 'sentAt',
+  readCount: 'readCount'
+} as const
+
+export type AdminNotificationScalarFieldEnum = (typeof AdminNotificationScalarFieldEnum)[keyof typeof AdminNotificationScalarFieldEnum]
+
+
+export const SystemLogScalarFieldEnum = {
+  id: 'id',
+  action: 'action',
+  description: 'description',
+  level: 'level',
+  adminName: 'adminName',
+  adminRole: 'adminRole',
+  ipAddress: 'ipAddress',
+  createdAt: 'createdAt'
+} as const
+
+export type SystemLogScalarFieldEnum = (typeof SystemLogScalarFieldEnum)[keyof typeof SystemLogScalarFieldEnum]
 
 
 export const UserFavoriteScalarFieldEnum = {

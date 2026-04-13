@@ -396,6 +396,8 @@ export const ModelName = {
   StreamingEvent: 'StreamingEvent',
   Ticket: 'Ticket',
   WatchHistory: 'WatchHistory',
+  AdminNotification: 'AdminNotification',
+  SystemLog: 'SystemLog',
   UserFavorite: 'UserFavorite'
 } as const
 
@@ -412,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "adminUser" | "channel" | "streamingEvent" | "ticket" | "watchHistory" | "userFavorite"
+    modelProps: "user" | "adminUser" | "channel" | "streamingEvent" | "ticket" | "watchHistory" | "adminNotification" | "systemLog" | "userFavorite"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -860,6 +862,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AdminNotification: {
+      payload: Prisma.$AdminNotificationPayload<ExtArgs>
+      fields: Prisma.AdminNotificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdminNotificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdminNotificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>
+        }
+        findFirst: {
+          args: Prisma.AdminNotificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdminNotificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>
+        }
+        findMany: {
+          args: Prisma.AdminNotificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>[]
+        }
+        create: {
+          args: Prisma.AdminNotificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>
+        }
+        createMany: {
+          args: Prisma.AdminNotificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdminNotificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>[]
+        }
+        delete: {
+          args: Prisma.AdminNotificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>
+        }
+        update: {
+          args: Prisma.AdminNotificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.AdminNotificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdminNotificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdminNotificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.AdminNotificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminNotificationPayload>
+        }
+        aggregate: {
+          args: Prisma.AdminNotificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdminNotification>
+        }
+        groupBy: {
+          args: Prisma.AdminNotificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdminNotificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdminNotificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdminNotificationCountAggregateOutputType> | number
+        }
+      }
+    }
+    SystemLog: {
+      payload: Prisma.$SystemLogPayload<ExtArgs>
+      fields: Prisma.SystemLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SystemLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SystemLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>
+        }
+        findFirst: {
+          args: Prisma.SystemLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SystemLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>
+        }
+        findMany: {
+          args: Prisma.SystemLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>[]
+        }
+        create: {
+          args: Prisma.SystemLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>
+        }
+        createMany: {
+          args: Prisma.SystemLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SystemLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>[]
+        }
+        delete: {
+          args: Prisma.SystemLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>
+        }
+        update: {
+          args: Prisma.SystemLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.SystemLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SystemLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SystemLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.SystemLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SystemLogPayload>
+        }
+        aggregate: {
+          args: Prisma.SystemLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSystemLog>
+        }
+        groupBy: {
+          args: Prisma.SystemLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SystemLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SystemLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SystemLogCountAggregateOutputType> | number
+        }
+      }
+    }
     UserFavorite: {
       payload: Prisma.$UserFavoritePayload<ExtArgs>
       fields: Prisma.UserFavoriteFieldRefs
@@ -1042,6 +1192,7 @@ export const StreamingEventScalarFieldEnum = {
   currency: 'currency',
   viewerCount: 'viewerCount',
   streamUrl: 'streamUrl',
+  muxStreamId: 'muxStreamId',
   location: 'location',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1078,6 +1229,34 @@ export const WatchHistoryScalarFieldEnum = {
 } as const
 
 export type WatchHistoryScalarFieldEnum = (typeof WatchHistoryScalarFieldEnum)[keyof typeof WatchHistoryScalarFieldEnum]
+
+
+export const AdminNotificationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  audience: 'audience',
+  sentBy: 'sentBy',
+  sentAt: 'sentAt',
+  readCount: 'readCount'
+} as const
+
+export type AdminNotificationScalarFieldEnum = (typeof AdminNotificationScalarFieldEnum)[keyof typeof AdminNotificationScalarFieldEnum]
+
+
+export const SystemLogScalarFieldEnum = {
+  id: 'id',
+  action: 'action',
+  description: 'description',
+  level: 'level',
+  adminName: 'adminName',
+  adminRole: 'adminRole',
+  ipAddress: 'ipAddress',
+  createdAt: 'createdAt'
+} as const
+
+export type SystemLogScalarFieldEnum = (typeof SystemLogScalarFieldEnum)[keyof typeof SystemLogScalarFieldEnum]
 
 
 export const UserFavoriteScalarFieldEnum = {
@@ -1331,6 +1510,8 @@ export type GlobalOmitConfig = {
   streamingEvent?: Prisma.StreamingEventOmit
   ticket?: Prisma.TicketOmit
   watchHistory?: Prisma.WatchHistoryOmit
+  adminNotification?: Prisma.AdminNotificationOmit
+  systemLog?: Prisma.SystemLogOmit
   userFavorite?: Prisma.UserFavoriteOmit
 }
 

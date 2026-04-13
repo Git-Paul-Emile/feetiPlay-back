@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { adminAuthService } from "../services/adminAuth.service.js";
+import { AppError } from "../utils/AppError.js";
 import { jsonResponse } from "../utils/response.js";
 import { controllerWrapper } from "../utils/ControllerWrapper.js";
 import { verifyRefreshToken, generateToken } from "../config/jwt.js";
@@ -35,6 +36,36 @@ export const adminMe = controllerWrapper(async (req: Request, res: Response) => 
   res.status(StatusCodes.OK).json(
     jsonResponse({ status: "success", message: "Admin récupéré", data: admin })
   );
+});
+
+export const adminUpdateProfile = controllerWrapper(async (req: Request, res: Response) => {
+  const { name, avatar, currentPassword, newPassword } = req.body as {
+    name?: string;
+    avatar?: string;
+    currentPassword?: string;
+    newPassword?: string;
+  };
+  const userId = req.user!.userId;
+
+  if (newPassword) {
+    if (!currentPassword) throw new AppError("Mot de passe actuel requis", 400);
+    const admin = await adminAuthRepository.findById(userId);
+    if (!admin) throw new AppError("Admin introuvable", 404);
+    const valid = await (await import("bcrypt")).compare(currentPassword, admin.passwordHash);
+    if (!valid) throw new AppError("Mot de passe actuel incorrect", 401);
+    await adminAuthRepository.updatePassword(userId, newPassword);
+  }
+
+  const update: { name?: string; avatar?: string } = {};
+  if (name?.trim()) update.name = name.trim();
+  if (avatar !== undefined) update.avatar = avatar;
+
+  if (Object.keys(update).length > 0) {
+    await adminAuthRepository.updateProfile(userId, update);
+  }
+
+  const updated = await adminAuthService.getMe(userId);
+  res.status(200).json(jsonResponse({ status: "success", message: "Profil mis à jour", data: updated }));
 });
 
 export const adminRefresh = controllerWrapper(async (req: Request, res: Response) => {
